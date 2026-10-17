@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
@@ -114,13 +115,34 @@ const PRODUCTS = [
   { sku: 'GAM-SNY-PS5', name: 'Sony PlayStation 5 Slim Console (1TB SSD Digital)', category: 'Gaming & Consoles', purchasePrice: 380, sellingPrice: 449, availableStock: 0, reorderLevel: 3, unit: 'pcs', isActive: true, barcode: '711719569012', description: 'Slim design, 1TB high-speed SSD, DualSense wireless controller, 4K 120Hz' },
 ];
 
+const SEED_SALES_SPEC = [
+  { invoiceNumber: 'INV-2026-1001', daysAgo: 28, customerName: 'Vikram Mehta', customerPhone: '+91 98765 43210', paymentMethod: 'Credit Card', items: [{ sku: 'PHN-APL-16P', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 1 }], discountPercent: 5 },
+  { invoiceNumber: 'INV-2026-1002', daysAgo: 26, customerName: 'Anita Desai', customerPhone: '+91 98123 45678', paymentMethod: 'UPI / QR', items: [{ sku: 'LAP-APL-M3', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1003', daysAgo: 24, customerName: 'Priya Sharma', customerPhone: '+91 98234 56789', paymentMethod: 'UPI / QR', items: [{ sku: 'AUD-SNY-XM5', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1004', daysAgo: 22, customerName: 'Rajesh Kumar', customerPhone: '+91 98345 67890', paymentMethod: 'Bank Transfer', items: [{ sku: 'LAP-DEL-XPS', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1005', daysAgo: 20, customerName: 'Rohan Malhotra', customerPhone: '+91 98456 78901', paymentMethod: 'Credit Card', items: [{ sku: 'PHN-SAM-S24', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1006', daysAgo: 18, customerName: 'Sneha Patel', customerPhone: '+91 98567 89012', paymentMethod: 'UPI / QR', items: [{ sku: 'AUD-APL-APP2', quantity: 1 }, { sku: 'ACC-LOG-MX3', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1007', daysAgo: 16, customerName: 'Ananya Roy', customerPhone: '+91 98678 90123', paymentMethod: 'Credit Card', items: [{ sku: 'TAB-APL-A11', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1008', daysAgo: 14, customerName: 'Amit Shah', customerPhone: '+91 98789 01234', paymentMethod: 'Cash', items: [{ sku: 'DIS-LG-C3', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 2 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1009', daysAgo: 12, customerName: 'Pooja Joshi', customerPhone: '+91 98890 12345', paymentMethod: 'UPI / QR', items: [{ sku: 'WRB-APL-UW2', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1010', daysAgo: 10, customerName: 'Manoj Tiwari', customerPhone: '+91 98901 23456', paymentMethod: 'Credit Card', items: [{ sku: 'LAP-APL-M3', quantity: 1 }, { sku: 'ACC-LOG-MX3', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1011', daysAgo: 8, customerName: 'Deepa Krishnan', customerPhone: '+91 99012 34567', paymentMethod: 'UPI / QR', items: [{ sku: 'PHN-APL-16P', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1012', daysAgo: 7, customerName: 'Siddharth Roy', customerPhone: '+91 99123 45678', paymentMethod: 'Credit Card', items: [{ sku: 'AUD-SNY-XM5', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1013', daysAgo: 5, customerName: 'Kavita Nair', customerPhone: '+91 99234 56789', paymentMethod: 'UPI / QR', items: [{ sku: 'PHN-SAM-S24', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1014', daysAgo: 4, customerName: 'Rahul Verma', customerPhone: '+91 99345 67890', paymentMethod: 'Cash', items: [{ sku: 'AUD-APL-APP2', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1015', daysAgo: 3, customerName: 'Sunita Rao', customerPhone: '+91 99456 78901', paymentMethod: 'Bank Transfer', items: [{ sku: 'LAP-DEL-XPS', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1016', daysAgo: 2, customerName: 'Gaurav Kapoor', customerPhone: '+91 99567 89012', paymentMethod: 'UPI / QR', items: [{ sku: 'TAB-APL-A11', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1017', daysAgo: 1, customerName: 'Alok Sharma', customerPhone: '+91 99678 90123', paymentMethod: 'Credit Card', items: [{ sku: 'WRB-APL-UW2', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1018', daysAgo: 0, customerName: 'Meera Nambiar', customerPhone: '+91 99789 01234', paymentMethod: 'UPI / QR', items: [{ sku: 'AUD-APL-APP2', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 2 }], discountPercent: 0 },
+];
+
 async function seedFreshAtlasDatabase() {
   console.log('Connecting to MongoDB Atlas cluster...');
   await mongoose.connect(ATLAS_URI, { serverSelectionTimeoutMS: 10000 });
   console.log('Connected to database:', mongoose.connection.name);
 
-  // 1. Clean previous data in khushbu_electronic_store
-  console.log('Clearing any existing collections in database...');
+  // 1. Clean previous data
+  console.log('Clearing existing collections in database...');
   await Promise.all([
     User.deleteMany({}),
     Product.deleteMany({}),
@@ -129,7 +151,7 @@ async function seedFreshAtlasDatabase() {
   ]);
   console.log('Cleared existing collections.');
 
-  // 2. Seed Users with bcrypt passwords
+  // 2. Seed Users
   console.log('Creating fresh demo user accounts...');
   const adminHash = await bcrypt.hash('admin123', 10);
   const staffHash = await bcrypt.hash('staff123', 10);
@@ -165,11 +187,15 @@ async function seedFreshAtlasDatabase() {
   const createdProducts = await Product.insertMany(PRODUCTS);
   console.log(`Created ${createdProducts.length} products.`);
 
+  const prodMap = new Map(createdProducts.map((p) => [p.sku, p]));
+
   // 4. Seed Stock Movements
   console.log('Logging initial inventory movements...');
-  const macbook = createdProducts.find((p) => p.sku === 'LAP-APL-M3')!;
-  const iphone = createdProducts.find((p) => p.sku === 'PHN-APL-16P')!;
-  const charger = createdProducts.find((p) => p.sku === 'ACC-ANK-65W')!;
+  const macbook = prodMap.get('LAP-APL-M3')!;
+  const iphone = prodMap.get('PHN-APL-16P')!;
+  const charger = prodMap.get('ACC-ANK-65W')!;
+  const xm5 = prodMap.get('AUD-SNY-XM5')!;
+  const airpods = prodMap.get('AUD-APL-APP2')!;
 
   await Movement.insertMany([
     {
@@ -177,13 +203,39 @@ async function seedFreshAtlasDatabase() {
       sku: macbook.sku,
       productName: macbook.name,
       movementType: 'INITIAL_STOCK',
-      quantity: 15,
+      quantity: 16,
       previousStock: 0,
-      newStock: 15,
+      newStock: 16,
       reason: 'Initial store inventory stock intake',
       referenceId: 'PO-2026-001',
       performedBy: { id: adminUser._id.toString(), name: 'Khushbu', role: 'StoreManager' },
-      timestamp: new Date(Date.now() - 86400000 * 5),
+      timestamp: new Date(Date.now() - 30 * 86400000),
+    },
+    {
+      product: iphone._id,
+      sku: iphone.sku,
+      productName: iphone.name,
+      movementType: 'INITIAL_STOCK',
+      quantity: 5,
+      previousStock: 0,
+      newStock: 5,
+      reason: 'Initial intake',
+      referenceId: 'PO-2026-002',
+      performedBy: { id: adminUser._id.toString(), name: 'Khushbu', role: 'StoreManager' },
+      timestamp: new Date(Date.now() - 30 * 86400000),
+    },
+    {
+      product: charger._id,
+      sku: charger.sku,
+      productName: charger.name,
+      movementType: 'STOCK_RECEIVED',
+      quantity: 55,
+      previousStock: 0,
+      newStock: 55,
+      reason: 'Vendor batch shipment received',
+      referenceId: 'PO-2026-003',
+      performedBy: { id: adminUser._id.toString(), name: 'Khushbu', role: 'StoreManager' },
+      timestamp: new Date(Date.now() - 25 * 86400000),
     },
     {
       product: iphone._id,
@@ -191,99 +243,110 @@ async function seedFreshAtlasDatabase() {
       productName: iphone.name,
       movementType: 'SALE',
       quantity: -1,
-      previousStock: 4,
-      newStock: 3,
-      reason: 'Store retail checkout',
-      referenceId: 'INV-2026-001',
+      previousStock: 5,
+      newStock: 4,
+      reason: 'Customer purchase checkout',
+      referenceId: 'INV-2026-1001',
       performedBy: { id: staffUser._id.toString(), name: 'Store Staff Member', role: 'Staff' },
-      timestamp: new Date(Date.now() - 86400000 * 2),
+      timestamp: new Date(Date.now() - 28 * 86400000),
     },
     {
-      product: charger._id,
-      sku: charger.sku,
-      productName: charger.name,
-      movementType: 'STOCK_RECEIVED',
-      quantity: 20,
-      previousStock: 28,
-      newStock: 48,
-      reason: 'Vendor consignment delivery',
-      referenceId: 'PO-2026-004',
-      performedBy: { id: adminUser._id.toString(), name: 'Khushbu', role: 'StoreManager' },
-      timestamp: new Date(Date.now() - 86400000 * 1),
+      product: xm5._id,
+      sku: xm5.sku,
+      productName: xm5.name,
+      movementType: 'SALE',
+      quantity: -1,
+      previousStock: 20,
+      newStock: 19,
+      reason: 'Customer purchase checkout',
+      referenceId: 'INV-2026-1003',
+      performedBy: { id: staffUser._id.toString(), name: 'Store Staff Member', role: 'Staff' },
+      timestamp: new Date(Date.now() - 24 * 86400000),
+    },
+    {
+      product: airpods._id,
+      sku: airpods.sku,
+      productName: airpods.name,
+      movementType: 'SALE',
+      quantity: -1,
+      previousStock: 4,
+      newStock: 3,
+      reason: 'Customer purchase checkout',
+      referenceId: 'INV-2026-1006',
+      performedBy: { id: staffUser._id.toString(), name: 'Store Staff Member', role: 'Staff' },
+      timestamp: new Date(Date.now() - 18 * 86400000),
+    },
+    {
+      product: airpods._id,
+      sku: airpods.sku,
+      productName: airpods.name,
+      movementType: 'SALE',
+      quantity: -1,
+      previousStock: 3,
+      newStock: 2,
+      reason: 'Low stock triggered from sale',
+      referenceId: 'INV-2026-1018',
+      performedBy: { id: staffUser._id.toString(), name: 'Store Staff Member', role: 'Staff' },
+      timestamp: new Date(Date.now() - 1 * 86400000),
     },
   ]);
   console.log('Initial movements recorded.');
 
-  // 5. Seed Initial Sales
-  console.log('Creating initial demo sales transactions...');
-  await Sale.insertMany([
-    {
-      invoiceNumber: 'INV-2026-001',
-      items: [
-        {
-          product: iphone._id,
-          sku: iphone.sku,
-          name: iphone.name,
-          quantity: 1,
-          purchasePrice: iphone.purchasePrice,
-          unitPrice: iphone.sellingPrice,
-          itemTotal: iphone.sellingPrice,
-        },
-        {
-          product: charger._id,
-          sku: charger.sku,
-          name: charger.name,
-          quantity: 1,
-          purchasePrice: charger.purchasePrice,
-          unitPrice: charger.sellingPrice,
-          itemTotal: charger.sellingPrice,
-        },
-      ],
-      subtotal: 1248,
-      discountPercent: 5,
-      discountAmount: 62.4,
-      taxPercent: 18,
-      taxAmount: 213.41,
-      totalAmount: 1399.01,
-      totalCost: 1008,
-      profitAmount: 177.6,
-      paymentMethod: 'Credit Card',
-      customerName: 'Vikram Mehta',
-      customerPhone: '+91 98765 43210',
-      soldBy: { id: staffUser._id.toString(), name: 'Store Staff Member', role: 'Staff' },
+  // 5. Seed Sales
+  console.log('Creating 18 demo sales transactions across the last 30 days...');
+  const salesToInsert = SEED_SALES_SPEC.map((spec) => {
+    const validatedItems = spec.items.map((it) => {
+      const p = prodMap.get(it.sku)!;
+      const itemTotal = parseFloat((it.quantity * p.sellingPrice).toFixed(2));
+      return {
+        product: p._id,
+        sku: p.sku,
+        name: p.name,
+        quantity: it.quantity,
+        purchasePrice: p.purchasePrice,
+        unitPrice: p.sellingPrice,
+        itemTotal,
+      };
+    });
+
+    const subtotal = validatedItems.reduce((acc, it) => acc + it.itemTotal, 0);
+    const totalCost = validatedItems.reduce((acc, it) => acc + it.quantity * it.purchasePrice, 0);
+    const discountPercent = spec.discountPercent || 0;
+    const discountAmount = parseFloat(((subtotal * discountPercent) / 100).toFixed(2));
+    const taxPercent = 18;
+    const taxable = subtotal - discountAmount;
+    const taxAmount = parseFloat(((taxable * taxPercent) / 100).toFixed(2));
+    const totalAmount = parseFloat((taxable + taxAmount).toFixed(2));
+    const profitAmount = parseFloat((taxable - totalCost).toFixed(2));
+    const createdAt = new Date(Date.now() - spec.daysAgo * 86400000);
+
+    return {
+      invoiceNumber: spec.invoiceNumber,
+      items: validatedItems,
+      subtotal,
+      discountPercent,
+      discountAmount,
+      taxPercent,
+      taxAmount,
+      totalAmount,
+      totalCost,
+      profitAmount,
+      paymentMethod: spec.paymentMethod,
+      customerName: spec.customerName,
+      customerPhone: spec.customerPhone,
+      soldBy: {
+        id: adminUser._id.toString(),
+        name: 'Khushbu',
+        role: 'StoreManager',
+      },
       status: 'COMPLETED',
-      createdAt: new Date(Date.now() - 86400000 * 2),
-    },
-    {
-      invoiceNumber: 'INV-2026-002',
-      items: [
-        {
-          product: createdProducts.find((p) => p.sku === 'AUD-SNY-XM5')!._id,
-          sku: 'AUD-SNY-XM5',
-          name: 'Sony WH-1000XM5 Wireless Noise Cancelling Headphones',
-          quantity: 1,
-          purchasePrice: 260,
-          unitPrice: 349,
-          itemTotal: 349,
-        },
-      ],
-      subtotal: 349,
-      discountPercent: 0,
-      discountAmount: 0,
-      taxPercent: 18,
-      taxAmount: 62.82,
-      totalAmount: 411.82,
-      totalCost: 260,
-      profitAmount: 89,
-      paymentMethod: 'UPI / QR',
-      customerName: 'Priya Sharma',
-      customerPhone: '+91 98123 45678',
-      soldBy: { id: staffUser._id.toString(), name: 'Store Staff Member', role: 'Staff' },
-      status: 'COMPLETED',
-      createdAt: new Date(Date.now() - 86400000 * 1),
-    },
-  ]);
-  console.log('Initial sales recorded.');
+      createdAt,
+      updatedAt: createdAt,
+    };
+  });
+
+  await Sale.insertMany(salesToInsert);
+  console.log(`Created ${salesToInsert.length} sales invoices.`);
 
   // Verification counts
   const userCount = await User.countDocuments();

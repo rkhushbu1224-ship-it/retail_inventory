@@ -116,16 +116,186 @@ const SEED_PRODUCTS = [
   { id: 'prod-005', sku: 'AUD-SNY-XM5', name: 'Sony WH-1000XM5 Wireless Noise Cancelling Headphones', category: 'Audio & Headphones', purchasePrice: 260, sellingPrice: 349, availableStock: 19, reorderLevel: 6, unit: 'pcs', isActive: true, barcode: '027242929005', description: 'Industry-leading noise cancellation with 2 processors and 8 microphones' },
   { id: 'prod-006', sku: 'AUD-APL-APP2', name: 'Apple AirPods Pro (2nd Gen) with USB-C MagSafe Case', category: 'Audio & Headphones', purchasePrice: 180, sellingPrice: 249, availableStock: 2, reorderLevel: 5, unit: 'pcs', isActive: true, barcode: '195949119006', description: 'Up to 2x more active noise cancellation, Adaptive Audio, USB-C case' },
   { id: 'prod-007', sku: 'DIS-LG-C3', name: 'LG 55" Class OLED evo C3 Series 4K Smart TV', category: 'Displays & TVs', purchasePrice: 950, sellingPrice: 1299, availableStock: 5, reorderLevel: 3, unit: 'pcs', isActive: true, barcode: '719192629007', description: 'α9 AI Processor Gen6, 120Hz refresh rate, Dolby Vision & Atmos, webOS' },
-  { id: 'prod-008', sku: 'ACC-ANK-65W', name: 'Anker Prime 65W GaN Fast Charger (3-Port USB-C/A)', category: 'Accessories & Cables', purchasePrice: 28, military: 49, sellingPrice: 49, availableStock: 48, reorderLevel: 10, unit: 'pcs', isActive: true, barcode: '194644119008', description: 'Ultra-compact GaNPrime tech, charges laptop, tablet & phone simultaneously' },
+  { id: 'prod-008', sku: 'ACC-ANK-65W', name: 'Anker Prime 65W GaN Fast Charger (3-Port USB-C/A)', category: 'Accessories & Cables', purchasePrice: 28, sellingPrice: 49, availableStock: 48, reorderLevel: 10, unit: 'pcs', isActive: true, barcode: '194644119008', description: 'Ultra-compact GaNPrime tech, charges laptop, tablet & phone simultaneously' },
   { id: 'prod-009', sku: 'ACC-LOG-MX3', name: 'Logitech MX Master 3S Wireless Performance Mouse', category: 'Accessories & Cables', purchasePrice: 65, sellingPrice: 99, availableStock: 22, reorderLevel: 5, unit: 'pcs', isActive: true, barcode: '097855169009', description: '8K DPI optical sensor with Quiet Clicks, MagSpeed electromagnetic scrolling' },
   { id: 'prod-010', sku: 'TAB-APL-A11', name: 'Apple iPad Air 11" M2 (128GB Wi-Fi, Space Gray)', category: 'Smartphones & Tablets', purchasePrice: 480, sellingPrice: 599, availableStock: 1, reorderLevel: 4, unit: 'pcs', isActive: true, barcode: '195949219010', description: 'Apple M2 chip, 11-inch Liquid Retina display with True Tone, USB-C' },
   { id: 'prod-011', sku: 'WRB-APL-UW2', name: 'Apple Watch Ultra 2 GPS + Cellular 49mm Titanium', category: 'Wearables & Smart Home', purchasePrice: 620, sellingPrice: 799, availableStock: 6, reorderLevel: 3, unit: 'pcs', isActive: true, barcode: '195949319011', description: 'Rugged titanium case, precision dual-frequency GPS, up to 36 hours battery' },
   { id: 'prod-012', sku: 'GAM-SNY-PS5', name: 'Sony PlayStation 5 Slim Console (1TB SSD Digital)', category: 'Gaming & Consoles', purchasePrice: 380, sellingPrice: 449, availableStock: 0, reorderLevel: 3, unit: 'pcs', isActive: true, barcode: '711719569012', description: 'Slim design, 1TB high-speed SSD, DualSense wireless controller, 4K 120Hz' },
 ];
 
+const SEED_MOVEMENTS = [
+  {
+    sku: 'LAP-APL-M3',
+    productName: 'Apple MacBook Air 15" M3 (16GB, 512GB SSD)',
+    movementType: 'INITIAL_STOCK',
+    quantity: 16,
+    previousStock: 0,
+    newStock: 16,
+    reason: 'Initial store inventory stock intake',
+    referenceId: 'PO-2026-001',
+    performedBy: { id: 'STR-MGR-01', name: 'Khushbu', role: 'StoreManager' },
+    timestamp: new Date(Date.now() - 30 * 86400000),
+    createdAt: new Date(Date.now() - 30 * 86400000),
+  },
+  {
+    sku: 'PHN-APL-16P',
+    productName: 'Apple iPhone 16 Pro 256GB - Natural Titanium',
+    movementType: 'INITIAL_STOCK',
+    quantity: 5,
+    previousStock: 0,
+    newStock: 5,
+    reason: 'Initial intake',
+    referenceId: 'PO-2026-002',
+    performedBy: { id: 'STR-MGR-01', name: 'Khushbu', role: 'StoreManager' },
+    timestamp: new Date(Date.now() - 30 * 86400000),
+    createdAt: new Date(Date.now() - 30 * 86400000),
+  },
+  {
+    sku: 'ACC-ANK-65W',
+    productName: 'Anker Prime 65W GaN Fast Charger (3-Port USB-C/A)',
+    movementType: 'STOCK_RECEIVED',
+    quantity: 55,
+    previousStock: 0,
+    newStock: 55,
+    reason: 'Vendor batch shipment received',
+    referenceId: 'PO-2026-003',
+    performedBy: { id: 'STR-MGR-01', name: 'Khushbu', role: 'StoreManager' },
+    timestamp: new Date(Date.now() - 25 * 86400000),
+    createdAt: new Date(Date.now() - 25 * 86400000),
+  },
+  {
+    sku: 'PHN-APL-16P',
+    productName: 'Apple iPhone 16 Pro 256GB - Natural Titanium',
+    movementType: 'SALE',
+    quantity: -1,
+    previousStock: 5,
+    newStock: 4,
+    reason: 'Customer purchase checkout',
+    referenceId: 'INV-2026-1001',
+    performedBy: { id: 'STR-MGR-01', name: 'Khushbu', role: 'StoreManager' },
+    timestamp: new Date(Date.now() - 28 * 86400000),
+    createdAt: new Date(Date.now() - 28 * 86400000),
+  },
+  {
+    sku: 'AUD-SNY-XM5',
+    productName: 'Sony WH-1000XM5 Wireless Noise Cancelling Headphones',
+    movementType: 'SALE',
+    quantity: -1,
+    previousStock: 20,
+    newStock: 19,
+    reason: 'Customer purchase checkout',
+    referenceId: 'INV-2026-1003',
+    performedBy: { id: 'STR-MGR-01', name: 'Khushbu', role: 'StoreManager' },
+    timestamp: new Date(Date.now() - 24 * 86400000),
+    createdAt: new Date(Date.now() - 24 * 86400000),
+  },
+  {
+    sku: 'AUD-APL-APP2',
+    productName: 'Apple AirPods Pro (2nd Gen) with USB-C MagSafe Case',
+    movementType: 'SALE',
+    quantity: -1,
+    previousStock: 4,
+    newStock: 3,
+    reason: 'Customer purchase checkout',
+    referenceId: 'INV-2026-1006',
+    performedBy: { id: 'STR-MGR-01', name: 'Khushbu', role: 'StoreManager' },
+    timestamp: new Date(Date.now() - 18 * 86400000),
+    createdAt: new Date(Date.now() - 18 * 86400000),
+  },
+  {
+    sku: 'AUD-APL-APP2',
+    productName: 'Apple AirPods Pro (2nd Gen) with USB-C MagSafe Case',
+    movementType: 'SALE',
+    quantity: -1,
+    previousStock: 3,
+    newStock: 2,
+    reason: 'Low stock triggered from sale',
+    referenceId: 'INV-2026-1018',
+    performedBy: { id: 'STR-MGR-01', name: 'Khushbu', role: 'StoreManager' },
+    timestamp: new Date(Date.now() - 1 * 86400000),
+    createdAt: new Date(Date.now() - 1 * 86400000),
+  },
+];
+
+const SEED_SALES_SPEC = [
+  { invoiceNumber: 'INV-2026-1001', daysAgo: 28, customerName: 'Vikram Mehta', customerPhone: '+91 98765 43210', paymentMethod: 'Credit Card', items: [{ sku: 'PHN-APL-16P', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 1 }], discountPercent: 5 },
+  { invoiceNumber: 'INV-2026-1002', daysAgo: 26, customerName: 'Anita Desai', customerPhone: '+91 98123 45678', paymentMethod: 'UPI / QR', items: [{ sku: 'LAP-APL-M3', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1003', daysAgo: 24, customerName: 'Priya Sharma', customerPhone: '+91 98234 56789', paymentMethod: 'UPI / QR', items: [{ sku: 'AUD-SNY-XM5', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1004', daysAgo: 22, customerName: 'Rajesh Kumar', customerPhone: '+91 98345 67890', paymentMethod: 'Bank Transfer', items: [{ sku: 'LAP-DEL-XPS', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1005', daysAgo: 20, customerName: 'Rohan Malhotra', customerPhone: '+91 98456 78901', paymentMethod: 'Credit Card', items: [{ sku: 'PHN-SAM-S24', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1006', daysAgo: 18, customerName: 'Sneha Patel', customerPhone: '+91 98567 89012', paymentMethod: 'UPI / QR', items: [{ sku: 'AUD-APL-APP2', quantity: 1 }, { sku: 'ACC-LOG-MX3', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1007', daysAgo: 16, customerName: 'Ananya Roy', customerPhone: '+91 98678 90123', paymentMethod: 'Credit Card', items: [{ sku: 'TAB-APL-A11', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1008', daysAgo: 14, customerName: 'Amit Shah', customerPhone: '+91 98789 01234', paymentMethod: 'Cash', items: [{ sku: 'DIS-LG-C3', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 2 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1009', daysAgo: 12, customerName: 'Pooja Joshi', customerPhone: '+91 98890 12345', paymentMethod: 'UPI / QR', items: [{ sku: 'WRB-APL-UW2', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1010', daysAgo: 10, customerName: 'Manoj Tiwari', customerPhone: '+91 98901 23456', paymentMethod: 'Credit Card', items: [{ sku: 'LAP-APL-M3', quantity: 1 }, { sku: 'ACC-LOG-MX3', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1011', daysAgo: 8, customerName: 'Deepa Krishnan', customerPhone: '+91 99012 34567', paymentMethod: 'UPI / QR', items: [{ sku: 'PHN-APL-16P', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1012', daysAgo: 7, customerName: 'Siddharth Roy', customerPhone: '+91 99123 45678', paymentMethod: 'Credit Card', items: [{ sku: 'AUD-SNY-XM5', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1013', daysAgo: 5, customerName: 'Kavita Nair', customerPhone: '+91 99234 56789', paymentMethod: 'UPI / QR', items: [{ sku: 'PHN-SAM-S24', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1014', daysAgo: 4, customerName: 'Rahul Verma', customerPhone: '+91 99345 67890', paymentMethod: 'Cash', items: [{ sku: 'AUD-APL-APP2', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1015', daysAgo: 3, customerName: 'Sunita Rao', customerPhone: '+91 99456 78901', paymentMethod: 'Bank Transfer', items: [{ sku: 'LAP-DEL-XPS', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1016', daysAgo: 2, customerName: 'Gaurav Kapoor', customerPhone: '+91 99567 89012', paymentMethod: 'UPI / QR', items: [{ sku: 'TAB-APL-A11', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1017', daysAgo: 1, customerName: 'Alok Sharma', customerPhone: '+91 99678 90123', paymentMethod: 'Credit Card', items: [{ sku: 'WRB-APL-UW2', quantity: 1 }], discountPercent: 0 },
+  { invoiceNumber: 'INV-2026-1018', daysAgo: 0, customerName: 'Meera Nambiar', customerPhone: '+91 99789 01234', paymentMethod: 'UPI / QR', items: [{ sku: 'AUD-APL-APP2', quantity: 1 }, { sku: 'ACC-ANK-65W', quantity: 2 }], discountPercent: 0 },
+];
+
+function generateSeedSales(productList: any[]) {
+  const prodMap = new Map(productList.map((p) => [p.sku, p]));
+  return SEED_SALES_SPEC.map((spec) => {
+    const validatedItems = spec.items.map((it) => {
+      const p = prodMap.get(it.sku) || { sku: it.sku, name: it.sku, purchasePrice: 50, sellingPrice: 100 };
+      const itemTotal = parseFloat((it.quantity * p.sellingPrice).toFixed(2));
+      return {
+        product: p._id || p.id,
+        sku: p.sku,
+        name: p.name,
+        quantity: it.quantity,
+        purchasePrice: p.purchasePrice,
+        unitPrice: p.sellingPrice,
+        itemTotal,
+      };
+    });
+
+    const subtotal = validatedItems.reduce((acc, it) => acc + it.itemTotal, 0);
+    const totalCost = validatedItems.reduce((acc, it) => acc + it.quantity * it.purchasePrice, 0);
+    const discountPercent = spec.discountPercent || 0;
+    const discountAmount = parseFloat(((subtotal * discountPercent) / 100).toFixed(2));
+    const taxPercent = 18;
+    const taxable = subtotal - discountAmount;
+    const taxAmount = parseFloat(((taxable * taxPercent) / 100).toFixed(2));
+    const totalAmount = parseFloat((taxable + taxAmount).toFixed(2));
+    const profitAmount = parseFloat((taxable - totalCost).toFixed(2));
+    const createdAt = new Date(Date.now() - spec.daysAgo * 86400000);
+
+    return {
+      id: `sale-${spec.invoiceNumber}`,
+      invoiceNumber: spec.invoiceNumber,
+      items: validatedItems,
+      subtotal,
+      discountPercent,
+      discountAmount,
+      taxPercent,
+      taxAmount,
+      totalAmount,
+      totalCost,
+      profitAmount,
+      paymentMethod: spec.paymentMethod,
+      customerName: spec.customerName,
+      customerPhone: spec.customerPhone,
+      soldBy: {
+        id: 'STR-MGR-01',
+        name: 'Khushbu',
+        role: 'StoreManager',
+      },
+      status: 'COMPLETED',
+      createdAt,
+      updatedAt: createdAt,
+    };
+  });
+}
+
 let memProducts = JSON.parse(JSON.stringify(SEED_PRODUCTS));
-let memMovements: any[] = [];
-let memSales: any[] = [];
+let memMovements: any[] = JSON.parse(JSON.stringify(SEED_MOVEMENTS));
+let memSales: any[] = JSON.parse(JSON.stringify(generateSeedSales(SEED_PRODUCTS)));
 
 // Mongo DB connection cache
 let isConnected = false;
@@ -142,11 +312,13 @@ async function ensureDB(): Promise<boolean> {
       isConnected = true;
       console.log('[API Route] MongoDB Connected successfully.');
 
-      // Auto-seed if empty
+      // Auto-seed Products
       const prodCount = await ProductModel.countDocuments();
       if (prodCount === 0) {
         await ProductModel.insertMany(SEED_PRODUCTS.map(({ id, ...p }) => p));
       }
+
+      // Auto-seed Admin User
       const userCount = await UserModel.countDocuments();
       if (userCount === 0) {
         const hash = await bcrypt.hash('admin123', 10);
@@ -159,6 +331,21 @@ async function ensureDB(): Promise<boolean> {
           designation: 'Store Manager',
         });
       }
+
+      // Auto-seed Movements
+      const moveCount = await MovementModel.countDocuments();
+      if (moveCount === 0) {
+        await MovementModel.insertMany(SEED_MOVEMENTS);
+      }
+
+      // Auto-seed Sales
+      const saleCount = await SaleModel.countDocuments();
+      if (saleCount === 0) {
+        const dbProducts = await ProductModel.find().lean();
+        const initialSales = generateSeedSales(dbProducts.length > 0 ? dbProducts : SEED_PRODUCTS);
+        await SaleModel.insertMany(initialSales);
+      }
+
       return true;
     } catch (err: any) {
       isConnected = false;
@@ -329,7 +516,7 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
       if (status === 'inactive') list = list.filter((p) => !p.isActive);
       if (status === 'low_stock') list = list.filter((p) => p.isActive && p.availableStock <= p.reorderLevel);
 
-      const categories = ['All', ...new Set(memProducts.map((p) => p.category))];
+      const categories = ['All', ...new Set(memProducts.map((p: any) => p.category))];
       return json({ success: true, count: list.length, data: list, categories });
     }
 
@@ -390,7 +577,7 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
         await p.save();
         return json({ success: true, message: `Product status updated.`, data: p });
       }
-      const p = memProducts.find((x) => x.id === id || x.sku === id);
+      const p = memProducts.find((x: any) => x.id === id || x.sku === id);
       if (!p) return json({ success: false, message: 'Product not found.' }, 404);
       p.isActive = !p.isActive;
       return json({ success: true, message: `Product status updated.`, data: p });
@@ -402,7 +589,7 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
         const p = await ProductModel.findByIdAndUpdate(id, updates, { new: true });
         return json({ success: true, data: p });
       }
-      const idx = memProducts.findIndex((x) => x.id === id || x.sku === id);
+      const idx = memProducts.findIndex((x: any) => x.id === id || x.sku === id);
       if (idx !== -1) {
         memProducts[idx] = { ...memProducts[idx], ...updates };
         return json({ success: true, data: memProducts[idx] });
@@ -418,7 +605,7 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
         isActive: true,
         $expr: { $lte: ['$availableStock', '$reorderLevel'] },
       }).sort({ availableStock: 1 });
-      const data = low.map((p) => ({
+      const data = low.map((p: any) => ({
         ...p.toObject(),
         deficit: Math.max(0, p.reorderLevel - p.availableStock),
         urgency: p.availableStock === 0 ? 'CRITICAL_OUT_OF_STOCK' : 'REORDER_REQUIRED',
@@ -427,8 +614,8 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
     }
 
     const low = memProducts
-      .filter((p) => p.isActive && p.availableStock <= p.reorderLevel)
-      .map((p) => ({
+      .filter((p: any) => p.isActive && p.availableStock <= p.reorderLevel)
+      .map((p: any) => ({
         ...p,
         deficit: Math.max(0, p.reorderLevel - p.availableStock),
         urgency: p.availableStock === 0 ? 'CRITICAL_OUT_OF_STOCK' : 'REORDER_REQUIRED',
@@ -468,7 +655,7 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
       return json({ success: true, message: 'Stock adjusted.', product, movement });
     }
 
-    const p = memProducts.find((x) => x.sku === sku || x.id === productId);
+    const p = memProducts.find((x: any) => x.sku === sku || x.id === productId);
     if (!p) return json({ success: false, message: 'Product not found.' }, 404);
     const prev = p.availableStock;
     const next = isAdditive ? prev + numQty : Math.max(0, prev - numQty);
@@ -491,21 +678,68 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
 
   // 8. Inventory Movements: /api/inventory/movements
   if (path === 'inventory/movements' && method === 'GET') {
+    const url = new URL(req.url);
+    const limit = parseInt(url.searchParams.get('limit') || '100', 10);
+    const movementType = url.searchParams.get('movementType');
+
+    let query: any = {};
+    if (movementType && movementType !== 'All') {
+      query.movementType = movementType;
+    }
+
     if (isConnected) {
-      const movements = await MovementModel.find().sort({ createdAt: -1 }).limit(100);
+      const movements = await MovementModel.find(query).sort({ timestamp: -1, createdAt: -1 }).limit(limit).lean();
       return json({ success: true, count: movements.length, data: movements });
     }
-    return json({ success: true, count: memMovements.length, data: memMovements });
+
+    let filtered = memMovements;
+    if (movementType && movementType !== 'All') {
+      filtered = filtered.filter((m: any) => m.movementType === movementType);
+    }
+    const movements = filtered.slice(0, limit);
+    return json({ success: true, count: movements.length, data: movements });
   }
 
   // 9. Sales: /api/sales
   if (path === 'sales') {
     if (method === 'GET') {
-      if (isConnected) {
-        const sales = await SaleModel.find().sort({ createdAt: -1 }).limit(100);
-        return json({ success: true, count: sales.length, data: sales });
+      const url = new URL(req.url);
+      const limit = parseInt(url.searchParams.get('limit') || '100', 10);
+      const search = (url.searchParams.get('search') || '').toLowerCase();
+      const startDateParam = url.searchParams.get('startDate');
+      const endDateParam = url.searchParams.get('endDate');
+
+      let query: any = {};
+      if (startDateParam || endDateParam) {
+        query.createdAt = {};
+        if (startDateParam) query.createdAt.$gte = new Date(startDateParam + 'T00:00:00Z');
+        if (endDateParam) query.createdAt.$lte = new Date(endDateParam + 'T23:59:59.999Z');
       }
-      return json({ success: true, count: memSales.length, data: memSales });
+
+      let sales: any[] = [];
+      if (isConnected) {
+        sales = await SaleModel.find(query).sort({ createdAt: -1 }).limit(limit).lean();
+      } else {
+        sales = memSales.filter((s: any) => {
+          if (startDateParam || endDateParam) {
+            const t = new Date(s.createdAt).getTime();
+            const start = startDateParam ? new Date(startDateParam + 'T00:00:00Z').getTime() : 0;
+            const end = endDateParam ? new Date(endDateParam + 'T23:59:59.999Z').getTime() : Infinity;
+            if (t < start || t > end) return false;
+          }
+          return true;
+        }).slice(0, limit);
+      }
+
+      if (search) {
+        sales = sales.filter((s: any) =>
+          s.invoiceNumber?.toLowerCase().includes(search) ||
+          s.customerName?.toLowerCase().includes(search) ||
+          s.items?.some((i: any) => i.name?.toLowerCase().includes(search) || i.sku?.toLowerCase().includes(search))
+        );
+      }
+
+      return json({ success: true, count: sales.length, data: sales });
     }
 
     if (method === 'POST') {
@@ -570,7 +804,7 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
       const validatedItems: any[] = [];
       let totalCost = 0;
       for (const it of items) {
-        const p = memProducts.find((x) => x.sku === it.sku || x.id === it.productId);
+        const p = memProducts.find((x: any) => x.sku === it.sku || x.id === it.productId);
         if (!p || p.availableStock < it.quantity) {
           return json({ success: false, message: `Insufficient stock for ${it.sku || 'item'}.` }, 400);
         }
@@ -618,29 +852,150 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
 
   // 10. Reports: /api/reports/sales
   if (path === 'reports/sales' && method === 'GET') {
-    const list = isConnected ? await SaleModel.find({ status: 'COMPLETED' }) : memSales;
-    const totalRevenue = list.reduce((acc: number, s: any) => acc + (s.totalAmount || 0), 0);
-    const totalUnitsSold = list.reduce((acc: number, s: any) => acc + (s.items || []).reduce((x: number, i: any) => x + (i.quantity || 0), 0), 0);
+    const url = new URL(req.url);
+    const startDateParam = url.searchParams.get('startDate');
+    const endDateParam = url.searchParams.get('endDate');
+
+    let allSales: any[] = isConnected
+      ? await SaleModel.find({ status: 'COMPLETED' }).lean()
+      : memSales.filter((s: any) => s.status === 'COMPLETED');
+
+    if (startDateParam || endDateParam) {
+      const start = startDateParam ? new Date(startDateParam + 'T00:00:00Z').getTime() : 0;
+      const end = endDateParam ? new Date(endDateParam + 'T23:59:59.999Z').getTime() : Infinity;
+      allSales = allSales.filter((s: any) => {
+        const t = new Date(s.createdAt).getTime();
+        return t >= start && t <= end;
+      });
+    }
+
+    const totalRevenue = allSales.reduce((acc: number, s: any) => acc + (s.totalAmount || 0), 0);
+    const totalUnitsSold = allSales.reduce((acc: number, s: any) => acc + (s.items || []).reduce((x: number, i: any) => x + (i.quantity || 0), 0), 0);
+    const transactionCount = allSales.length;
+    const averageOrderValue = transactionCount > 0 ? parseFloat((totalRevenue / transactionCount).toFixed(2)) : 0;
+
+    // Top products by units sold
+    const productAgg: Record<string, { sku: string; name: string; quantity: number; revenue: number }> = {};
+    for (const s of allSales) {
+      for (const it of s.items || []) {
+        if (!productAgg[it.sku]) {
+          productAgg[it.sku] = { sku: it.sku, name: it.name, quantity: 0, revenue: 0 };
+        }
+        productAgg[it.sku].quantity += it.quantity || 0;
+        productAgg[it.sku].revenue += it.itemTotal || (it.quantity * (it.unitPrice || 0));
+      }
+    }
+    const topProducts = Object.values(productAgg)
+      .map((p) => ({ ...p, revenue: parseFloat(p.revenue.toFixed(2)) }))
+      .sort((a, b) => b.quantity - a.quantity);
+
+    // Sales by day (grouped by YYYY-MM-DD)
+    const dayAgg: Record<string, { date: string; total: number; count: number }> = {};
+    for (const s of allSales) {
+      const d = new Date(s.createdAt);
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      if (!dayAgg[key]) {
+        dayAgg[key] = { date: key, total: 0, count: 0 };
+      }
+      dayAgg[key].total += s.totalAmount || 0;
+      dayAgg[key].count += 1;
+    }
+    const salesByDay = Object.values(dayAgg)
+      .map((d) => ({ date: d.date, total: parseFloat(d.total.toFixed(2)), count: d.count }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+
+    const totalSubtotal = allSales.reduce((acc: number, s: any) => acc + (s.subtotal || 0), 0);
+    const totalDiscount = allSales.reduce((acc: number, s: any) => acc + (s.discountAmount || 0), 0);
+    const totalTax = allSales.reduce((acc: number, s: any) => acc + (s.taxAmount || 0), 0);
 
     return json({
       success: true,
       data: {
         totalRevenue: parseFloat(totalRevenue.toFixed(2)),
-        transactionCount: list.length,
+        transactionCount,
         totalUnitsSold,
-        averageOrderValue: list.length > 0 ? parseFloat((totalRevenue / list.length).toFixed(2)) : 0,
-        topProducts: [],
-        salesByDay: [],
+        averageOrderValue,
+        topProducts,
+        salesByDay,
+        summary: {
+          totalSubtotal: parseFloat(totalSubtotal.toFixed(2)),
+          totalDiscount: parseFloat(totalDiscount.toFixed(2)),
+          totalTax: parseFloat(totalTax.toFixed(2)),
+        },
       },
     });
   }
 
   // 11. Reports: /api/reports/profit
   if (path === 'reports/profit' && method === 'GET') {
-    const list = isConnected ? await SaleModel.find({ status: 'COMPLETED' }) : memSales;
-    const totalRevenue = list.reduce((acc: number, s: any) => acc + (s.totalAmount || 0), 0);
-    const totalCost = list.reduce((acc: number, s: any) => acc + (s.totalCost || 0), 0);
+    const url = new URL(req.url);
+    const startDateParam = url.searchParams.get('startDate');
+    const endDateParam = url.searchParams.get('endDate');
+
+    let allSales: any[] = isConnected
+      ? await SaleModel.find({ status: 'COMPLETED' }).lean()
+      : memSales.filter((s: any) => s.status === 'COMPLETED');
+
+    if (startDateParam || endDateParam) {
+      const start = startDateParam ? new Date(startDateParam + 'T00:00:00Z').getTime() : 0;
+      const end = endDateParam ? new Date(endDateParam + 'T23:59:59.999Z').getTime() : Infinity;
+      allSales = allSales.filter((s: any) => {
+        const t = new Date(s.createdAt).getTime();
+        return t >= start && t <= end;
+      });
+    }
+
+    const totalRevenue = allSales.reduce((acc: number, s: any) => acc + (s.totalAmount || 0), 0);
+    const totalCost = allSales.reduce((acc: number, s: any) => acc + (s.totalCost || 0), 0);
     const grossProfit = totalRevenue - totalCost;
+    const marginPercent = totalRevenue > 0 ? Math.round((grossProfit / totalRevenue) * 100) : 0;
+
+    // Item profit leaderboard
+    const itemProfitAgg: Record<string, { sku: string; name: string; quantity: number; revenue: number; cost: number; profit: number }> = {};
+    for (const s of allSales) {
+      for (const it of s.items || []) {
+        if (!itemProfitAgg[it.sku]) {
+          itemProfitAgg[it.sku] = { sku: it.sku, name: it.name, quantity: 0, revenue: 0, cost: 0, profit: 0 };
+        }
+        const rev = it.itemTotal || (it.quantity * (it.unitPrice || 0));
+        const cst = it.quantity * (it.purchasePrice || 0);
+        itemProfitAgg[it.sku].quantity += it.quantity || 0;
+        itemProfitAgg[it.sku].revenue += rev;
+        itemProfitAgg[it.sku].cost += cst;
+        itemProfitAgg[it.sku].profit += (rev - cst);
+      }
+    }
+    const itemProfitLeaderboard = Object.values(itemProfitAgg)
+      .map((it) => ({
+        ...it,
+        revenue: parseFloat(it.revenue.toFixed(2)),
+        cost: parseFloat(it.cost.toFixed(2)),
+        profit: parseFloat(it.profit.toFixed(2)),
+      }))
+      .sort((a, b) => b.profit - a.profit);
+
+    // Category breakdown
+    const skuToCat: Record<string, string> = {};
+    SEED_PRODUCTS.forEach((p) => { skuToCat[p.sku] = p.category; });
+
+    const catAgg: Record<string, { category: string; revenue: number; cost: number; profit: number }> = {};
+    for (const item of Object.values(itemProfitAgg)) {
+      const cat = skuToCat[item.sku] || 'General Electronics';
+      if (!catAgg[cat]) {
+        catAgg[cat] = { category: cat, revenue: 0, cost: 0, profit: 0 };
+      }
+      catAgg[cat].revenue += item.revenue;
+      catAgg[cat].cost += item.cost;
+      catAgg[cat].profit += item.profit;
+    }
+
+    const categoryBreakdown = Object.values(catAgg).map((c) => ({
+      category: c.category,
+      revenue: parseFloat(c.revenue.toFixed(2)),
+      cost: parseFloat(c.cost.toFixed(2)),
+      profit: parseFloat(c.profit.toFixed(2)),
+      marginPercent: c.revenue > 0 ? Math.round((c.profit / c.revenue) * 100) : 0,
+    }));
 
     return json({
       success: true,
@@ -649,10 +1004,10 @@ async function handle(req: NextRequest, { params }: { params: Promise<{ slug?: s
         netRevenue: parseFloat(totalRevenue.toFixed(2)),
         totalCost: parseFloat(totalCost.toFixed(2)),
         grossProfit: parseFloat(grossProfit.toFixed(2)),
-        marginPercent: totalRevenue > 0 ? Math.round((grossProfit / totalRevenue) * 100) : 0,
-        salesCount: list.length,
-        itemProfitLeaderboard: [],
-        categoryBreakdown: [],
+        marginPercent,
+        salesCount: allSales.length,
+        itemProfitLeaderboard,
+        categoryBreakdown,
       },
     });
   }
