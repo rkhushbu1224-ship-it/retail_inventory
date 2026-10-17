@@ -1,12 +1,14 @@
+const apiTarget = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:47191';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  // Proxy /api calls to the Express backend running on port 8081
+  // Proxy /api calls to the Express backend
   async rewrites() {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:47191/api/:path*',
+        destination: `${apiTarget.replace(/\/+$/, '')}/api/:path*`,
       },
     ];
   },
