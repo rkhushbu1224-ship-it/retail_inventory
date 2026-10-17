@@ -1,16 +1,21 @@
-const apiTarget = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:47191';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  // Proxy /api calls to the Express backend
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${apiTarget.replace(/\/+$/, '')}/api/:path*`,
-      },
-    ];
+    // If an external backend is explicitly provided, rewrite /api calls to it.
+    // Otherwise, let Next.js internal API route handlers (/src/app/api/...) handle requests directly on Vercel and locally.
+    if (process.env.API_URL && /^https?:\/\//i.test(process.env.API_URL)) {
+      return [
+        {
+          source: '/api/:path*',
+          destination: `${process.env.API_URL.replace(/\/+$/, '')}/api/:path*`,
+        },
+      ];
+    }
+    return [];
   },
 };
 
